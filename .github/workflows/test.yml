@@ -41,6 +41,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-android
           
       - name: Install Dependencies
+        if: steps.node_cache.outputs.cache-hit != 'true'
         run: |
           yarn
           npx jetifier
