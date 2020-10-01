@@ -33,6 +33,13 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
           
+      - name: Cache gradle android
+        uses: actions/cache@v2
+        with:
+          path: android/.gradle
+          key: ${{ runner.os }}-gradle-android-${{ hashFiles('**/package.json') }}
+          restore-keys: ${{ runner.os }}-gradle-android
+          
       - name: Install Dependencies
         run: |
           yarn
