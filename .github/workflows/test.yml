@@ -36,9 +36,9 @@ jobs:
       - name: Cache gradle android
         uses: actions/cache@v2
         with:
-          path: android/.gradle
-          key: ${{ runner.os }}-gradle-android-${{ hashFiles('**/package.json') }}
-          restore-keys: ${{ runner.os }}-gradle-android
+          path: android/app/build
+          key: ${{ runner.os }}-build-android-${{ hashFiles('**/package.json') }}
+          restore-keys: ${{ runner.os }}-build-android
           
       - name: Install Dependencies
         run: |
