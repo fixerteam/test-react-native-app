@@ -26,6 +26,11 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install Dependencies
+        run: |
+          yarn ci
+          npx jetifier
+
       - name: Cache gradle
         uses: actions/cache@v2
         with:
@@ -39,12 +44,6 @@ jobs:
           path: android/app/build
           key: ${{ runner.os }}-build-android-${{ hashFiles('**/package.json') }}
           restore-keys: ${{ runner.os }}-build-android
-          
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          yarn
-          npx jetifier
           
       - name: Build
         run: cd android && ./gradlew assembleRelease && cd ../
