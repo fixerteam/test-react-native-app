@@ -21,7 +21,7 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v2
-        id: node_cache
+        id: cache
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('**/yarn.lock') }}
@@ -41,6 +41,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-android
           
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           yarn
           npx jetifier
