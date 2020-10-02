@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          yarn ci
+          yarn --frozen-lockfile
           npx jetifier
 
       - name: Cache gradle
