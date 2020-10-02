@@ -58,6 +58,14 @@ jobs:
       - name: Build
         run: cd android && ./gradlew assembleRelease && cd ../
 
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: qa
+          file: android/app/build/outputs/apk/release/app-release.apk
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
