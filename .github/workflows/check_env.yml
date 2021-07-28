@@ -21,6 +21,7 @@ jobs:
       - name: Test ENV
         run: |
           echo ${{ github.head_ref }}
-          echo ${{ github.ref }}
+          branchName="$(echo ${{ github.ref }} | cut -f3 -d/)"
+          echo $branchName
           echo ${{ github.base_ref }}
           echo ${{ github.run_number }}
