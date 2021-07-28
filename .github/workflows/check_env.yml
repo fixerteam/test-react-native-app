@@ -20,7 +20,7 @@ jobs:
 
       - name: Test ENV
         run: |
-          ${{ github.head_ref }}
-          ${{ github.ref }}
-          ${{ github.base_ref }}
-          ${{ github.run_number }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.run_number }}
