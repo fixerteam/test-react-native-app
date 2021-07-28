@@ -21,9 +21,9 @@ jobs:
       - name: Test ENV
         env:
           TEAM_NAME: $(echo ${{ github.ref }} | cut -f3 -d/)
-          SPRINT_NUMBER: ${{ github.event.inputs.sprint_number }}
+          BUILD_NUMBER: ${{ github.run_number }}
         run: |
           echo ${{ env.TEAM_NAME }}
-          echo ${{ env.SPRINT_NUMBER }}
+          echo ${{ env.BUILD_NUMBER }}
           echo ${{ github.base_ref }}
           echo ${{ github.run_number }}
