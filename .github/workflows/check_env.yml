@@ -20,6 +20,6 @@ jobs:
 
       - name: Test ENV
         run: |
-          echo ${{ github.ref | cut -f3 -d/ }}
+          echo $(echo ${{ github.ref | cut -f3 -d/ }} )
           echo ${{ github.base_ref }}
           echo ${{ github.run_number }}
