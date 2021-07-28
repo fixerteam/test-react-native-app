@@ -19,7 +19,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Test ENV
+        env:
+          TEAM_NAME: $(echo ${{ github.ref }} | cut -f3 -d/)
         run: |
-          echo $(echo ${{ github.ref }} | cut -f3 -d/)
+          echo ${{ env.TEAM_NAME }}
           echo ${{ github.base_ref }}
           echo ${{ github.run_number }}
