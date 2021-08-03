@@ -18,15 +18,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: |
-          export TEAM_NAME=$(echo ${{ github.ref }} | cut -f3 -d/)
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: Test ENV
         env:
+          TEAM_NAME: ${{ steps.vars.outputs.short_ref }}
           BUILD_NUMBER: ${{ github.run_number }}
         run: |
-          echo ${{ env.GITHUB_HEAD_REF }}
+          echo ${{ steps.vars.outputs.short_ref }}
+          echo ${{ env.TEAM_NAME }}
           echo ${{ env.BUILD_NUMBER }}
           echo ${{ github.base_ref }}
           echo ${{ github.run_number }}
