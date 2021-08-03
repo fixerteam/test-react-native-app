@@ -18,9 +18,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install Dependencies
+        run: |
+          export TEAM_NAME=$(echo ${{ github.ref }} | cut -f3 -d/)
+
       - name: Test ENV
         env:
-          TEAM_NAME: $(echo ${{ github.ref }} | cut -f3 -d/)
           BUILD_NUMBER: ${{ github.run_number }}
         run: |
           echo ${{ env.TEAM_NAME }}
